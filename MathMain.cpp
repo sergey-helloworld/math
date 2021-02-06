@@ -1,11 +1,26 @@
 #include "MathMain.h"
 #include "CliCommandParser.h"
+#include <memory>
 
 void MathMain::runCli(int argc, char* argv[]) {
     try {
         auto cmds = CliCommandParser::parse(argc, argv);
+        size_t count = 0;
         for (auto& a : cmds) {
-            a->execute();
+            auto obj = std::dynamic_pointer_cast<MathCommand>(a);
+            if (obj) {
+                if (count > 0 && obj->getArgs().size() < 2) {
+                    obj->addArgFront(std::dynamic_pointer_cast<MathCommand>(cmds[count - 1])->getResult());
+                }
+                a->execute();
+                auto result = obj->getResult();
+                result->print();
+                std::cout << '\n' << std::endl;
+                count++;
+            }
+            else {
+                a->execute();
+            }
         }
         //sample();
     }

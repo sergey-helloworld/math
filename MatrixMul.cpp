@@ -2,5 +2,6 @@
 
 void MatrixMul::execute() {
 	auto result = *_args[0] * *_args[1];
-	result->print();
+	_result = result;
+	//result->print();
 }
