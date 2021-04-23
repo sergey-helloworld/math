@@ -18,7 +18,7 @@ std::vector<std::shared_ptr<Command>> CliCommandParser::parse(int argc, char* ar
 	return result;
 }
 
-void CliCommandParser::parseParamsObject(std::shared_ptr<Command>& c, const std::string &param) {
+void CliCommandParser::parseParamsObject(std::shared_ptr<Command> c, const std::string &param) {
 	auto ptr = std::dynamic_pointer_cast<MathCommand>(c);
 	if (ptr) {
 		auto obj = parseMathObject(param);

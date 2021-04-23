@@ -13,7 +13,7 @@ class CliCommandParser
 public:
 	static std::vector<std::shared_ptr<Command>> parse(int argc, char* argv[]);
 private:
-	static void parseParamsObject(std::shared_ptr<Command>& c, const std::string &param);
+	static void parseParamsObject(std::shared_ptr<Command> c, const std::string &param);
 	static std::shared_ptr<MathObject> parseMathObject(const std::string &param);
 	static Matrix parseMatrix(std::string param);
 };

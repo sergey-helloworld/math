@@ -17,9 +17,30 @@ std::shared_ptr<MathObject> BasicNumber::operator+(const MathObject &m) const {
 	return std::make_shared<BasicNumber>(BasicNumber{ result });
 }
 
+std::shared_ptr<MathObject> BasicNumber::operator/(const MathObject& m) const {
+	double result = _number / m.toDouble();
+	if (result == 0) {
+		result = abs(result);
+	}
+	return std::make_shared<BasicNumber>(BasicNumber{ result });
+}
+
+std::shared_ptr<MathObject> BasicNumber::operator-(const MathObject& m) const {
+	double result = _number - m.toDouble();
+	//result = round(result * 100);
+	return std::make_shared<BasicNumber>(BasicNumber{ result });
+}
+
 MathObject& BasicNumber::operator+=(const MathObject &m) {
 	_number = _number + m.toDouble();
 	return *this;
 }
 
-void BasicNumber::print() const {}
+MathObject& BasicNumber::operator-=(const MathObject& m) {
+	_number = _number - m.toDouble();
+	return *this;
+}
+
+void BasicNumber::print() const {
+	std::cout << _number << std::endl;
+}

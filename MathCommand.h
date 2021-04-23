@@ -8,7 +8,7 @@ class MathCommand :
 public:
     virtual void addArg(const std::shared_ptr<MathObject>& arg);
     virtual std::vector<std::shared_ptr<MathObject>> getArgs() const;
-    virtual std::shared_ptr<MathObject> getResult() const;
+    std::shared_ptr<MathObject> getResult() const;
     virtual void addArgFront(const std::shared_ptr<MathObject>& arg);
     virtual ~MathCommand() = default;
     //virtual void execute() = 0;

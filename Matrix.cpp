@@ -47,7 +47,7 @@ void Matrix::print() const {
 std::shared_ptr<MathObject> Matrix::operator* (const MathObject &m2) const {
 	auto &m2ref = (const Matrix&)m2;
 	if (_size.row != m2ref.getSize().col) {
-		throw std::exception{ "Matrix is not compatible" };
+		throw std::logic_error{ "Matrix is not compatible" };
 	}
 	auto rowByColumn = [this, &m2ref](auto& m1row, auto& m2column) {
 		std::shared_ptr<MathObject> sum = nullptr;
@@ -78,7 +78,7 @@ std::shared_ptr<MathObject> Matrix::operator* (const MathObject &m2) const {
 std::shared_ptr<MathObject> Matrix::operator+(const MathObject& m2) const {
 	auto& m2ref = (const Matrix&)m2;
 	if ((_size.row != m2ref.getSize().row) || (_size.col != m2ref.getSize().col)) {
-		throw std::exception{ "Matrix is not compatible" };
+		throw std::logic_error{ "Matrix is not compatible" };
 	}
 	auto result = Matrix{ _size };
 	for (size_t i = 0; i < _size.row; i++) {
@@ -92,4 +92,18 @@ std::shared_ptr<MathObject> Matrix::operator+(const MathObject& m2) const {
 
 MathObject& Matrix::operator+=(const MathObject& m) {
 	return *this; //to do
+}
+
+MathObject& Matrix::operator-=(const MathObject& m) {
+	return *this; //to do
+}
+
+std::shared_ptr<MathObject> Matrix::operator/ (const MathObject& m2) const {
+	throw std::logic_error{ "Divide is not allowed for matrix" };
+	return std::make_shared<BasicNumber>(0);
+}
+
+std::shared_ptr<MathObject> Matrix::operator- (const MathObject& m2) const {
+	throw std::runtime_error{ "Not implemented" };
+	return std::make_shared<BasicNumber>(0);
 }
