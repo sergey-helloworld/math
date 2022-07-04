@@ -1,6 +1,9 @@
 #include "MathMain.h"
 #include "CliCommandParser.h"
 #include <memory>
+#include "System/Env.h"
+#include "System/EventDispatcher.h"
+#include "System/EventDto.h"
 
 void MathMain::runCli(int argc, char* argv[]) {
     try {
@@ -27,6 +30,12 @@ void MathMain::runCli(int argc, char* argv[]) {
     catch (std::exception& ex) {
         std::cout << ex.what() << std::endl;
     }
+
+    //test
+    auto testM = Matrix{ Matrix::MatrixSize{2,2} };
+    auto d = EventDispatcher::getInstance();
+    d->dispatch();
+    //end test
 }
 
 void MathMain::sample() {

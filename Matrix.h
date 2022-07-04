@@ -3,7 +3,8 @@
 #include "MathObject.h"
 #include <memory>
 #include <stdexcept>
-class Matrix : public MathObject
+#include "System/SystemObject.h"
+class Matrix : public MathObject, public SystemObject
 {
 public:
 	struct MatrixSize {
@@ -41,6 +42,8 @@ public:
 	std::shared_ptr<MathObject> operator- (const MathObject& m2) const;
 	MathObject& operator+=(const MathObject& m);
 	MathObject& operator-=(const MathObject& m);
+	virtual ~Matrix() = default;
+	// virtual bool canHandleEvents() const {return false;} 
 private:
 	std::vector<std::vector<std::shared_ptr<MathObject>>> _m;
 	MatrixSize _size;

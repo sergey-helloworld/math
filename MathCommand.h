@@ -6,10 +6,10 @@ class MathCommand :
     public Command
 {
 public:
-    virtual void addArg(const std::shared_ptr<MathObject>& arg);
+    virtual void addArg(std::shared_ptr<MathObject> arg);
     virtual std::vector<std::shared_ptr<MathObject>> getArgs() const;
     std::shared_ptr<MathObject> getResult() const;
-    virtual void addArgFront(const std::shared_ptr<MathObject>& arg);
+    virtual void addArgFront(std::shared_ptr<MathObject> arg);
     virtual ~MathCommand() = default;
     //virtual void execute() = 0;
 protected:
